@@ -34,15 +34,25 @@
 					icon="icon-category-installed"
 					:title="t('settings', 'Your apps')" />
 				<AppNavigationItem
-					id="app-category-your-enabled"
+					id="app-category-enabled"
 					:to="{ name: 'apps-category', params: { category: 'enabled' } }"
 					icon="icon-category-enabled"
 					:title="t('settings', 'Active apps')" />
 				<AppNavigationItem
-					id="app-category-your-disabled"
+					id="app-category-disabled"
 					:to="{ name: 'apps-category', params: { category: 'disabled' } }"
 					icon="icon-category-disabled"
 					:title="t('settings', 'Disabled apps')" />
+				<AppNavigationItem
+					v-if="updateCount > 0"
+					id="app-category-updates"
+					:to="{ name: 'apps-category', params: { category: 'updates' } }"
+					icon="icon-download"
+					:title="t('settings', 'Updates')">
+					<AppNavigationCounter slot="counter">
+						{{ updateCount }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
 				<AppNavigationItem
 					id="app-category-your-bundles"
 					:to="{ name: 'apps-category', params: { category: 'app-bundles' } }"
@@ -80,14 +90,15 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VueLocalStorage from 'vue-localstorage'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
+import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 import AppSidebar from '@nextcloud/vue/dist/Components/AppSidebar'
 import Content from '@nextcloud/vue/dist/Components/Content'
+import Vue from 'vue'
+import VueLocalStorage from 'vue-localstorage'
 
 import AppList from '../components/AppList'
 import AppDetails from '../components/AppDetails'
@@ -98,13 +109,14 @@ export default {
 	name: 'Apps',
 	components: {
 		AppContent,
+		AppDetails,
+		AppList,
 		AppNavigation,
+		AppNavigationCounter,
 		AppNavigationItem,
 		AppNavigationSpacer,
 		AppSidebar,
 		Content,
-		AppDetails,
-		AppList,
 	},
 	props: {
 		category: {

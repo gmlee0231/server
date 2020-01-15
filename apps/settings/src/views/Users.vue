@@ -87,15 +87,14 @@
 <script>
 import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
-import {
-	AppContent,
-	AppNavigation,
-	AppNavigationItem,
-	AppNavigationNew,
-	AppNavigationSettings,
-	Content,
-	Multiselect,
-} from 'nextcloud-vue'
+import AppContent from '@nextcloud/vue/dist/Components/AppContent'
+import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
+import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
+import Content from '@nextcloud/vue/dist/Components/Content'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+
 import UserList from '../components/UserList'
 
 Vue.use(VueLocalStorage)
